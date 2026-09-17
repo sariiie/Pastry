@@ -1,0 +1,163 @@
+@page "/menu"
+@rendermode InteractiveServer
+
+<PageTitle>Menu — Maison Fleurie</PageTitle>
+
+<!-- Hero -->
+<section class="menu-hero">
+    <div class="container menu-hero-inner">
+        <p class="eyebrow">The Atelier Menu</p>
+        <h1>The Symphony of Sweets</h1>
+        <p class="hero-text">
+            Our creations bring together rare artisanal offerings. Discover our
+            collection of unmatched Gâteaux, Tartes, Viennoiseries and Macarons.
+        </p>
+
+        <div class="category-pills">
+            @foreach (var category in categories)
+            {
+                <button type="button"
+                        class="@(category == selectedCategory ? "pill pill-active" : "pill")"
+                        @onclick="() => SelectCategory(category)">
+                    @category
+                </button>
+            }
+        </div>
+    </div>
+</section>
+
+@if (ShowCategory("Entremets & Gâteaux"))
+{
+    <section class="section">
+        <div class="container">
+            <div class="section-heading section-heading-left">
+                <h2>Signature Entremets</h2>
+                <p class="section-subtext">Elegant multi-layered creations, crafted daily in limited batches.</p>
+            </div>
+
+            <div class="product-grid">
+                <ProductCard Title="L'Opaline Fleurie" Badge="New" Price="8,90€"
+                             ImageUrl="https://loremflickr.com/500/380/pastry,cake"
+                             Description="Soft almond dacquoise, rose & raspberry cream, delicate crisp praline layer."
+                             CtaText="Add to Cart" />
+                <ProductCard Title="L'Essence d'Or" Price="9,80€"
+                             ImageUrl="https://loremflickr.com/500/380/chocolatecake"
+                             Description="Dark chocolate ganache, salted caramel core, gold leaf finish, hazelnut praline base."
+                             CtaText="Add to Cart" />
+                <ProductCard Title="Matcha & Fleur d'Oranger" Price="8,20€"
+                             ImageUrl="https://loremflickr.com/500/380/matchadessert"
+                             Description="Ceremonial matcha mousse, orange blossom cream, soft pistachio biscuit base."
+                             CtaText="Add to Cart" />
+            </div>
+        </div>
+    </section>
+}
+
+@if (ShowCategory("Tartes"))
+{
+    <section class="section section-tinted">
+        <div class="container">
+            <div class="section-heading section-heading-left">
+                <h2>Les Tartes Délicates</h2>
+                <p class="section-subtext">Crisp shortcrust pastry filled with seasonal fruit and delicate creams.</p>
+            </div>
+
+            <div class="product-grid">
+                <ProductCard Title="La Tarte aux Figues" Price="7,50€"
+                             ImageUrl="https://loremflickr.com/500/380/figtart"
+                             Description="Fresh fig compote, mascarpone cream, toasted almonds, honey drizzle from Provence."
+                             CtaText="Learn More" />
+                <ProductCard Title="Tarte Citron Sauvage" Price="7,20€"
+                             ImageUrl="https://loremflickr.com/500/380/lemontart"
+                             Description="Wild lemon curd, delicate Italian meringue, buttery shortbread base baked to order."
+                             CtaText="Learn More" />
+                <ProductCard Title="L'Éclat Chocolat-Caramel" Price="7,90€"
+                             ImageUrl="https://loremflickr.com/500/380/chocolatecaramel"
+                             Description="Bittersweet chocolate ganache, soft caramel, fleur de sel, cocoa shortcrust base."
+                             CtaText="Learn More" />
+            </div>
+        </div>
+    </section>
+}
+
+@if (ShowCategory("Viennoiseries"))
+{
+    <section class="section">
+        <div class="container">
+            <div class="section-heading section-heading-left">
+                <h2>Viennoiseries du Matin</h2>
+                <p class="section-subtext">Laminated by hand each morning, using Charentes-Poitou AOP butter.</p>
+            </div>
+
+            <div class="product-grid">
+                <ProductCard Title="Croissant Pur Beurre" Price="2,20€"
+                             ImageUrl="https://loremflickr.com/500/380/croissant"
+                             Description="76 delicate layers, shatteringly crisp crust and a soft honeycomb crumb."
+                             CtaText="Add to Cart" />
+                <ProductCard Title="Pain au Chocolat" Price="2,50€"
+                             ImageUrl="https://loremflickr.com/500/380/painauchocolat"
+                             Description="Flaky butter dough wrapped around two batons of dark Valrhona chocolate."
+                             CtaText="Add to Cart" />
+                <ProductCard Title="Kouign-Amann" Price="3,20€"
+                             ImageUrl="https://loremflickr.com/500/380/frenchpastry"
+                             Description="Caramelised laminated dough from Brittany, crisp edges, soft buttery center."
+                             CtaText="Add to Cart" />
+            </div>
+        </div>
+    </section>
+}
+
+@if (ShowCategory("Macarons"))
+{
+    <section class="section section-tinted">
+        <div class="container">
+            <div class="section-heading section-heading-left">
+                <h2>Nos Macarons</h2>
+                <p class="section-subtext">Crisp shell, soft chewy centre, filled with ganaches and fruit curds.</p>
+            </div>
+
+            <div class="product-grid">
+                <ProductCard Title="Vanille Bourbon" Price="2,00€"
+                             ImageUrl="https://loremflickr.com/500/380/macarons,vanilla"
+                             Description="Madagascar bourbon vanilla ganache, a Maison Fleurie signature flavour."
+                             CtaText="Add to Cart" />
+                <ProductCard Title="Framboise" Price="2,00€"
+                             ImageUrl="https://loremflickr.com/500/380/macarons,raspberry"
+                             Description="Fresh raspberry coulis and light French buttercream filling."
+                             CtaText="Add to Cart" />
+                <ProductCard Title="Pistache de Sicile" Price="2,00€"
+                             ImageUrl="https://loremflickr.com/500/380/macarons,pistachio"
+                             Description="Sicilian pistachio paste ganache with a delicate roasted finish."
+                             CtaText="Add to Cart" />
+            </div>
+        </div>
+    </section>
+}
+
+<!-- Special Orders -->
+<section class="section special-orders">
+    <div class="container split-grid split-grid-reverse">
+        <div class="split-copy">
+            <p class="eyebrow">Bespoke Creations</p>
+            <h2>Commandes Spéciales &amp; Événements</h2>
+            <p>
+                For your celebrations, entrust us with your most exquisite desires.
+                From the intimate to the grand, we shape your desires into
+                unforgettable, delicately assembled centrepieces.
+            </p>
+            <a class="btn btn-dark" href="/our-story">Submit a Request</a>
+        </div>
+        <div class="split-media split-media-sm"
+             style="background-image:url('https://loremflickr.com/700/560/weddingcake')"></div>
+    </div>
+</section>
+
+@code {
+    private readonly string[] categories = { "All", "Entremets & Gâteaux", "Tartes", "Viennoiseries", "Macarons" };
+    private string selectedCategory = "All";
+
+    private void SelectCategory(string category) => selectedCategory = category;
+
+    private bool ShowCategory(string category) =>
+        selectedCategory == "All" || selectedCategory == category;
+}

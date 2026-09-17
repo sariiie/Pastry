@@ -1,0 +1,16 @@
+<Router AppAssembly="@typeof(Program).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="@typeof(Layout.MainLayout)">
+            <div class="not-found-section">
+                <p class="eyebrow">404</p>
+                <h1>This page has crumbled away.</h1>
+                <p>The page you're looking for doesn't exist.</p>
+                <a class="btn btn-dark" href="/">Back to Home</a>
+            </div>
+        </LayoutView>
+    </NotFound>
+</Router>

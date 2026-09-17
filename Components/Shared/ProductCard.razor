@@ -1,0 +1,39 @@
+@namespace MaisonFleurie.Components.Shared
+
+<article class="product-card">
+    <div class="product-card-image" style="background-image:url('@ImageUrl')">
+        @if (!string.IsNullOrEmpty(Badge))
+        {
+            <span class="product-badge">@Badge</span>
+        }
+    </div>
+    <div class="product-card-body">
+        <div class="product-card-row">
+            <h3>@Title</h3>
+            <span class="product-price">@Price</span>
+        </div>
+        <p>@Description</p>
+        <button type="button" class="product-cta" @onclick="HandleClick">
+            <span>@CtaText</span>
+            <span class="arrow" aria-hidden="true">→</span>
+        </button>
+    </div>
+</article>
+
+@code {
+    [Parameter] public string ImageUrl { get; set; } = "";
+    [Parameter] public string? Badge { get; set; }
+    [Parameter] public string Title { get; set; } = "";
+    [Parameter] public string Price { get; set; } = "";
+    [Parameter] public string Description { get; set; } = "";
+    [Parameter] public string CtaText { get; set; } = "Add to Cart";
+    [Parameter] public EventCallback OnAdd { get; set; }
+
+    private async Task HandleClick()
+    {
+        if (OnAdd.HasDelegate)
+        {
+            await OnAdd.InvokeAsync();
+        }
+    }
+}
