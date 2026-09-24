@@ -5,3 +5,11 @@ obj/
 
 node_modules/
 debug.log
+
+*.db
+*.db-shm
+*.db-wal
+
+*.db
+*.db-shm
+*.db-wal

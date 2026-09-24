@@ -1,0 +1,152 @@
+@page "/account"
+@rendermode InteractiveServer
+@using MaisonFleurie.Models
+@using MaisonFleurie.Services
+@inject AuthService Auth
+@inject NavigationManager Nav
+
+<PageTitle>@(isSignUp ? "Sign up" : "Log in") · Maison Fleurie</PageTitle>
+
+<section class="flex min-h-[70vh] w-full items-center justify-center bg-blush px-4 py-12">
+    <div class="w-full max-w-md rounded-3xl bg-white p-8 shadow-lg shadow-bubblegum/30 ring-1 ring-petal">
+
+        @if (!ready)
+        {
+            <p class="text-center text-sm text-berry/60">Loading…</p>
+        }
+        else if (Auth.HasSession)
+        {
+            <h1 class="text-center font-serif text-3xl text-berry">Hello, @(Auth.CurrentUser?.FullName ?? "guest")</h1>
+            <p class="mt-2 text-center text-sm text-berry/60">
+                @(Auth.CurrentUser is { } u ? $"You're logged in as {u.Email}." : "You're browsing as a guest.")
+            </p>
+            <a href="/" class="@ButtonClass mt-8 block text-center">Back to home</a>
+            <button type="button" @onclick="LogOut" class="mt-4 w-full text-center text-sm text-berry/60 hover:underline">Log out</button>
+        }
+        else
+        {
+            <h1 class="text-center font-serif text-3xl text-berry">
+                @(isSignUp ? "Create your account" : "Welcome back")
+            </h1>
+            <p class="mt-2 text-center text-sm text-berry/60">
+                @(isSignUp ? "Join us for fresh pastries and sweet rewards." : "Log in to see your orders and cart.")
+            </p>
+
+            @if (isSignUp)
+            {
+                <EditForm Model="signUp" OnValidSubmit="HandleSignUp" FormName="signup" class="mt-8 space-y-5">
+                    <DataAnnotationsValidator />
+                    <div>
+                        <label class="@LabelClass">Full name</label>
+                        <InputText @bind-Value="signUp.FullName" autocomplete="name" class="@InputClass" />
+                        <ValidationMessage For="() => signUp.FullName" class="@ErrorClass" />
+                    </div>
+                    <div>
+                        <label class="@LabelClass">Email</label>
+                        <InputText @bind-Value="signUp.Email" autocomplete="email" class="@InputClass" />
+                        <ValidationMessage For="() => signUp.Email" class="@ErrorClass" />
+                    </div>
+                    <div>
+                        <label class="@LabelClass">Password</label>
+                        <InputText type="password" @bind-Value="signUp.Password" autocomplete="new-password" class="@InputClass" />
+                        <ValidationMessage For="() => signUp.Password" class="@ErrorClass" />
+                    </div>
+                    <div>
+                        <label class="@LabelClass">Confirm password</label>
+                        <InputText type="password" @bind-Value="signUp.ConfirmPassword" autocomplete="new-password" class="@InputClass" />
+                        <ValidationMessage For="() => signUp.ConfirmPassword" class="@ErrorClass" />
+                    </div>
+                    <button type="submit" class="@ButtonClass">Sign up</button>
+                </EditForm>
+            }
+            else
+            {
+                <EditForm Model="login" OnValidSubmit="HandleLogin" FormName="login" class="mt-8 space-y-5">
+                    <DataAnnotationsValidator />
+                    <div>
+                        <label class="@LabelClass">Email</label>
+                        <InputText @bind-Value="login.Email" autocomplete="email" class="@InputClass" />
+                        <ValidationMessage For="() => login.Email" class="@ErrorClass" />
+                    </div>
+                    <div>
+                        <label class="@LabelClass">Password</label>
+                        <InputText type="password" @bind-Value="login.Password" autocomplete="current-password" class="@InputClass" />
+                        <ValidationMessage For="() => login.Password" class="@ErrorClass" />
+                    </div>
+                    <button type="submit" class="@ButtonClass">Log in</button>
+                </EditForm>
+            }
+
+            @if (!string.IsNullOrEmpty(error))
+            {
+                <p class="mt-4 rounded-2xl bg-petal/60 p-3 text-center text-sm text-sweet-dark">@error</p>
+            }
+
+            <p class="mt-6 text-center text-sm text-berry/60">
+                @(isSignUp ? "Already have an account?" : "New to Maison Fleurie?")
+                <button type="button" @onclick="Toggle" class="font-medium text-sweet hover:underline">
+                    @(isSignUp ? "Log in" : "Sign up")
+                </button>
+            </p>
+            <p class="mt-2 text-center text-sm">
+                <button type="button" @onclick="Guest" class="text-berry/60 hover:underline">Continue as guest</button>
+            </p>
+        }
+    </div>
+</section>
+
+@code {
+    private bool isSignUp;
+    private bool ready;
+    private bool busy;
+    private string? error;
+    private LoginModel login = new();
+    private SignUpModel signUp = new();
+
+    private const string LabelClass = "mb-1 block text-sm font-medium text-berry";
+    private const string InputClass = "w-full rounded-full border border-petal bg-white px-4 py-2 text-berry focus:border-bubblegum focus:outline-none focus:ring-4 focus:ring-petal";
+    private const string ErrorClass = "mt-1 block text-xs text-sweet-dark";
+    private const string ButtonClass = "w-full rounded-full bg-sweet py-2.5 font-medium text-white shadow-md shadow-bubblegum/40 transition hover:bg-sweet-dark";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+        await Auth.LoadAsync();
+        ready = true;
+        StateHasChanged();
+    }
+
+    private void Toggle() { isSignUp = !isSignUp; error = null; }
+
+    private async Task HandleLogin()
+    {
+        if (busy) return;
+        busy = true; error = null;
+        var (ok, err) = await Auth.LoginAsync(login.Email, login.Password);
+        busy = false;
+        if (ok) Nav.NavigateTo("/", forceLoad: true); else error = err;
+    }
+
+    private async Task HandleSignUp()
+    {
+        if (busy) return;
+        busy = true; error = null;
+        var (ok, err) = await Auth.SignUpAsync(signUp.FullName, signUp.Email, signUp.Password);
+        busy = false;
+        if (ok) Nav.NavigateTo("/", forceLoad: true); else error = err;
+    }
+
+    private async Task Guest()
+    {
+        await Auth.ContinueAsGuestAsync();
+        Nav.NavigateTo("/", forceLoad: true);
+    }
+
+    private async Task LogOut()
+    {
+        await Auth.SignOutAsync();
+        login = new();
+        signUp = new();
+        error = null;
+    }
+}

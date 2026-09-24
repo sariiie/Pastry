@@ -1,0 +1,11 @@
+@using MaisonFleurie.Services
+@inject AuthService Auth
+@inject NavigationManager Nav
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!Auth.HasSession)
+    Nav.NavigateTo("/account");
+    }
+}

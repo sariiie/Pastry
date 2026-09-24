@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using MaisonFleurie.Data;
+using MaisonFleurie.Services;
 using MaisonFleurie.Components;
-using MaisonFleurie.Services; // Add this using directive
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +11,17 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddSingleton<CartService>(); // Register cart service here
 
+builder.Services.AddDbContextFactory<AppDbContext>(options =>
+    options.UseSqlite("Data Source=maisonfleurie.db"));
+builder.Services.AddScoped<AuthService>();
+
 var app = builder.Build();
+
+// Create the database on first run
+using (var db = app.Services.GetRequiredService<IDbContextFactory<AppDbContext>>().CreateDbContext())
+{
+    db.Database.EnsureCreated();
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
