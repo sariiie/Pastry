@@ -1,61 +1,70 @@
 @namespace MaisonFleurie.Components.Layout
 
-<footer class="site-footer">
-    <div class="container footer-grid">
-        <div class="footer-brand">
-            <span class="logo-text logo-text-light">Maison Fleurie</span>
-            <p>
+<footer class="bg-petal text-berry">
+    <div class="container grid gap-10 py-16 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+
+        <div>
+            <span class="font-display text-2xl font-bold text-berry">Maison Fleurie</span>
+            <p class="mt-4 max-w-sm text-sm leading-relaxed text-berry-soft">
                 Maison Fleurie is a luxury French boutique pastry shop,
                 hand-crafting beautiful, delicate layered masterpieces with
                 organic ingredients.
             </p>
-            <div class="social-row">
-                <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+            <div class="mt-5 flex gap-3">
+                <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" class="@SocialClass">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
                 </a>
-                <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok">
+                <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok" class="@SocialClass">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M14 3v10.5a3.5 3.5 0 11-3-3.46" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M14 3a5 5 0 005 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
                 </a>
-                <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+                <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook" class="@SocialClass">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M14 9h2.5V6H14c-1.66 0-3 1.34-3 3v2H9v3h2v7h3v-7h2.2l.5-3H14V9.4c0-.25.15-.4.4-.4z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
                 </a>
             </div>
         </div>
 
-        <nav class="footer-col">
-            <h4>Shop</h4>
-            <ul>
-                <li><a href="/menu">Our Creations</a></li>
-                <li><a href="/menu">Morning Pastries</a></li>
-                <li><a href="/menu">Tarts</a></li>
-                <li><a href="/menu">Macarons</a></li>
-                <li><a href="/menu">Special Orders</a></li>
+        <nav>
+            <h4 class="@HeadingClass">Shop</h4>
+            <ul class="space-y-3 text-sm">
+                <li><a href="/menu" class="@LinkClass">Our Creations</a></li>
+                <li><a href="/menu" class="@LinkClass">Morning Pastries</a></li>
+                <li><a href="/menu" class="@LinkClass">Tarts</a></li>
+                <li><a href="/menu" class="@LinkClass">Macarons</a></li>
+                <li><a href="/menu" class="@LinkClass">Special Orders</a></li>
             </ul>
         </nav>
 
-        <nav class="footer-col">
-            <h4>About</h4>
-            <ul>
-                <li><a href="/our-story">Our Story</a></li>
-                <li><a href="/our-story">Our Ingredients</a></li>
-                <li><a href="/our-story">Our Craft</a></li>
-                <li><a href="/our-story">Careers</a></li>
-                <li><a href="/our-story">Press &amp; Media</a></li>
+        <nav>
+            <h4 class="@HeadingClass">About</h4>
+            <ul class="space-y-3 text-sm">
+                <li><a href="/our-story" class="@LinkClass">Our Story</a></li>
+                <li><a href="/our-story" class="@LinkClass">Our Ingredients</a></li>
+                <li><a href="/our-story" class="@LinkClass">Our Craft</a></li>
+                <li><a href="/our-story" class="@LinkClass">Careers</a></li>
+                <li><a href="/our-story" class="@LinkClass">Press &amp; Media</a></li>
             </ul>
         </nav>
 
-        <div class="footer-col">
-            <h4>Hours &amp; Address</h4>
-            <p class="footer-text">Tue — Sat: 08:00 – 19:30<br />Sunday: 09:00 – 14:00<br />Monday: Closed</p>
-            <p class="footer-text">24 Rue de la Roquette, 75011 Paris</p>
+        <div>
+            <h4 class="@HeadingClass">Hours &amp; Address</h4>
+            <p class="text-sm leading-relaxed text-berry-soft">
+                Tue — Sat: 08:00 – 19:30<br />Sunday: 09:00 – 14:00<br />Monday: Closed
+            </p>
+            <p class="mt-4 text-sm text-berry-soft">24 Rue de la Roquette, 75011 Paris</p>
         </div>
     </div>
 
-    <div class="container footer-bottom">
+    <div class="container flex flex-col items-center justify-between gap-3 border-t border-berry/15 py-6 text-sm text-berry-soft md:flex-row">
         <span>© @DateTime.Now.Year Maison Fleurie. All rights reserved.</span>
-        <span class="footer-links">
-            <a href="/our-story">Terms of Use</a>
-            <a href="/our-story">Privacy Policy</a>
+        <span class="flex gap-5">
+            <a href="/our-story" class="hover:text-sweet">Terms of Use</a>
+            <a href="/our-story" class="hover:text-sweet">Privacy Policy</a>
         </span>
     </div>
 </footer>
+
+@code {
+    private const string HeadingClass = "mb-4 text-xs font-semibold uppercase tracking-widest text-sweet-dark";
+    private const string LinkClass = "text-berry transition hover:text-sweet";
+    private const string SocialClass = "flex h-9 w-9 items-center justify-center rounded-full border border-berry/25 text-berry transition hover:border-sweet hover:bg-sweet hover:text-white";
+}

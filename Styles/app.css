@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import "tailwindcss" important;
 
 @theme static {
   --color-blush: #fff0f6;
@@ -8,6 +8,7 @@
   --color-sweet-dark: #cf3376;
   --color-berry: #5e2a45;
   --color-berry-soft: #8f5a75;
+  --font-display: "Playfair Display", Georgia, serif;
 }
 
 /* ---------- Section backgrounds (Home and Menu) ---------- */
@@ -108,37 +109,7 @@ body .mobile-nav a.active:not(.btn) { color: var(--color-sweet); }
 /* ---------- Page base ---------- */
 body { background: #fff; }
 
-/* ---------- Footer ---------- */
-body .site-footer {
-  background: var(--color-petal);
-  color: var(--color-berry);
-}
-body .site-footer .logo-text,
-body .site-footer .logo-text-light { color: var(--color-berry); }
 
-body .footer-brand p,
-body .footer-text { color: var(--color-berry-soft); }
-
-body .footer-col h4 { color: var(--color-sweet-dark); }
-body .footer-col a { color: var(--color-berry); }
-body .footer-col a:hover,
-body .footer-links a:hover { color: var(--color-sweet); }
-
-body .social-row a {
-  color: var(--color-berry);
-  border-color: rgba(94, 42, 69, 0.25);
-}
-body .social-row a:hover {
-  background: var(--color-sweet);
-  border-color: var(--color-sweet);
-  color: #fff;
-}
-
-body .footer-bottom {
-  color: var(--color-berry-soft);
-  border-top: 1px solid rgba(94, 42, 69, 0.15);
-}
-body .footer-links a { color: var(--color-berry-soft); }
 /* ---------- Our Story ---------- */
 body .accent-italic { color: var(--color-sweet); }
 body .stat-name { color: var(--color-berry); }
