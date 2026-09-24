@@ -9,11 +9,6 @@
     --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-emerald-50: oklch(97.9% 0.021 166.113);
-    --color-emerald-700: oklch(50.8% 0.118 165.612);
-    --color-rose-700: oklch(51.4% 0.222 16.935);
-    --color-rose-900: oklch(41% 0.159 10.272);
-    --color-stone-500: oklch(55.3% 0.013 58.071);
     --color-white: #fff;
     --spacing: 0.25rem;
     --container-md: 28rem;
@@ -38,6 +33,7 @@
     --color-sweet: #e8478b;
     --color-sweet-dark: #cf3376;
     --color-berry: #5e2a45;
+    --color-berry-soft: #8f5a75;
   }
 }
 @layer base {
@@ -400,6 +396,216 @@
     --tw-outline-style: none;
     outline-style: none;
   }
+}
+body .section {
+  background: #fff;
+}
+body .section-tinted {
+  background: var(--color-blush);
+}
+body .hero, body .menu-hero, body .split-section, body .testimonial-section {
+  background: var(--color-blush);
+}
+body .quote-section, body .cta-section, body .special-orders {
+  background: var(--color-petal);
+}
+body .hero h1, body .menu-hero h1, body .section h2, body .cta-section h2, body .quote-text {
+  color: var(--color-berry);
+}
+body .hero-text, body .section-subtext, body .split-copy p, body .cta-section p, body .testimonial-card p, body .testimonial-card cite {
+  color: var(--color-berry-soft);
+}
+body .eyebrow, body .quote-attribution {
+  color: var(--color-sweet);
+}
+body .btn-dark {
+  background: var(--color-sweet);
+  border-color: var(--color-sweet);
+  color: #fff;
+}
+body .btn-dark:hover {
+  background: var(--color-sweet-dark);
+  border-color: var(--color-sweet-dark);
+}
+body .btn-outline {
+  background: transparent;
+  border-color: var(--color-sweet);
+  color: var(--color-sweet);
+}
+body .btn-outline:hover {
+  background: var(--color-petal);
+}
+body .pill {
+  background: #fff;
+  border: 1px solid var(--color-petal);
+  color: var(--color-berry);
+}
+body .pill:hover {
+  background: var(--color-petal);
+  border-color: var(--color-bubblegum);
+}
+body .pill-active, body .pill-active:hover {
+  background: var(--color-sweet);
+  border-color: var(--color-sweet);
+  color: #fff;
+}
+body .testimonial-card {
+  background: #fff;
+  border: 1px solid var(--color-petal);
+}
+body .site-header {
+  background: #fff;
+  border-bottom: 1px solid var(--color-petal);
+}
+body .logo-text {
+  color: var(--color-berry);
+}
+body .logo-tagline {
+  color: var(--color-sweet);
+}
+body .main-nav a {
+  color: var(--color-berry);
+}
+body .main-nav a:hover, body .main-nav a.active {
+  color: var(--color-sweet);
+}
+body .cart-btn, body .account-btn {
+  color: var(--color-berry);
+}
+body .cart-btn:hover, body .account-btn:hover {
+  color: var(--color-sweet);
+}
+body .account-btn {
+  display: inline-flex;
+  align-items: center;
+}
+body .cart-count {
+  background: var(--color-sweet);
+  color: #fff;
+}
+body .nav-toggle span {
+  background: var(--color-berry);
+}
+body .mobile-nav {
+  background: var(--color-blush);
+  border-top: 1px solid var(--color-petal);
+}
+body .mobile-nav a:not(.btn) {
+  color: var(--color-berry);
+}
+body .mobile-nav a.active:not(.btn) {
+  color: var(--color-sweet);
+}
+body {
+  background: #fff;
+}
+body .site-footer {
+  background: var(--color-petal);
+  color: var(--color-berry);
+}
+body .site-footer .logo-text, body .site-footer .logo-text-light {
+  color: var(--color-berry);
+}
+body .footer-brand p, body .footer-text {
+  color: var(--color-berry-soft);
+}
+body .footer-col h4 {
+  color: var(--color-sweet-dark);
+}
+body .footer-col a {
+  color: var(--color-berry);
+}
+body .footer-col a:hover, body .footer-links a:hover {
+  color: var(--color-sweet);
+}
+body .social-row a {
+  color: var(--color-berry);
+  border-color: rgba(94, 42, 69, 0.25);
+}
+body .social-row a:hover {
+  background: var(--color-sweet);
+  border-color: var(--color-sweet);
+  color: #fff;
+}
+body .footer-bottom {
+  color: var(--color-berry-soft);
+  border-top: 1px solid rgba(94, 42, 69, 0.15);
+}
+body .footer-links a {
+  color: var(--color-berry-soft);
+}
+body .accent-italic {
+  color: var(--color-sweet);
+}
+body .stat-name {
+  color: var(--color-berry);
+}
+body .stat-role {
+  color: var(--color-sweet);
+}
+body .hero-stats {
+  border-color: var(--color-petal);
+}
+body .trace-card {
+  background: #fff;
+  border: 1px solid var(--color-petal);
+}
+body .trace-card h3 {
+  color: var(--color-berry);
+}
+body .trace-card p {
+  color: var(--color-berry-soft);
+}
+body .trace-number {
+  color: var(--color-bubblegum);
+}
+body .contact-info > p {
+  color: var(--color-berry-soft);
+}
+body .contact-details li {
+  color: var(--color-berry);
+}
+body .contact-details svg {
+  color: var(--color-sweet);
+}
+body .map-thumb {
+  border: 1px solid var(--color-petal);
+}
+body .map-thumb-btn {
+  background: #fff;
+  color: var(--color-sweet);
+}
+body .contact-form-card {
+  background: #fff;
+  border: 1px solid var(--color-petal);
+  box-shadow: 0 10px 30px rgba(255, 143, 184, 0.18);
+}
+body .contact-form-card h3 {
+  color: var(--color-berry);
+}
+body .form-subtext {
+  color: var(--color-berry-soft);
+}
+body .form-field label {
+  color: var(--color-berry);
+}
+body .form-field input, body .form-field select, body .form-field textarea {
+  background: #fff;
+  border: 1px solid var(--color-petal);
+  color: var(--color-berry);
+}
+body .form-field input:focus, body .form-field select:focus, body .form-field textarea:focus {
+  border-color: var(--color-bubblegum);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-petal);
+}
+body .form-success {
+  background: var(--color-blush);
+  border: 1px solid var(--color-petal);
+  color: var(--color-berry);
+}
+body .validation-errors, body .validation-message {
+  color: var(--color-sweet-dark);
 }
 @property --tw-space-y-reverse {
   syntax: "*";

@@ -1,9 +1,8 @@
 @page "/"
-@using MaisonFleurie.Components.Shared
-<AuthGate @rendermode="InteractiveServer" />
 @rendermode InteractiveServer
-
+@using MaisonFleurie.Components.Shared
 <PageTitle>Maison Fleurie — Elegance, Balance &amp; Artisanal Sweets</PageTitle>
+<AuthGate />
 
 <!-- Hero -->
 <section class="hero">
